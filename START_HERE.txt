@@ -1,0 +1,57 @@
+TELEGRAM STORE V2
+
+WHAT'S FIXED
+- /myorders now works and persists orders in SQLite (store.db).
+- Admin gets actual payment request messages with VERIFY & DELIVER / REJECT buttons.
+- Verified software is automatically sent to the buyer's Telegram DM.
+- Software delivery files are managed from the products/ folder.
+- Discord Notify Bot has a Manage subscription menu and $10 Recharge flow.
+- Recharge requests collect the Discord bot username and TXID and appear to the admin.
+
+SETUP
+1. Revoke the old exposed BotFather token and create a new token.
+2. Open Command Prompt in this folder.
+3. Install:
+   py -m pip install -r requirements.txt
+4. Set these values:
+   set TELEGRAM_BOT_TOKEN=YOUR_NEW_BOTFATHER_TOKEN
+   set ADMIN_TELEGRAM_ID=YOUR_NUMERIC_TELEGRAM_ID
+   set CRYPTO_COIN=USDT
+   set CRYPTO_NETWORK=TRON (TRC20)
+   set CRYPTO_ADDRESS=YOUR_PUBLIC_RECEIVING_ADDRESS
+5. Start:
+   py bot.py
+
+PRODUCT DELIVERY
+Put the actual files in products/ using these exact names:
+- ScreenConnect.exe
+- DiscordNotifyBot.zip
+- TwitterBot.zip
+- DiscordServerHunter.zip
+- WalletSwap.zip
+
+Then the bot will automatically send the matching file after you click VERIFY & DELIVER.
+
+ADDING/REMOVING SOFTWARE
+For the starter version, edit the PRODUCTS dictionary in bot.py.
+To add a product, copy a product block, give it a unique key, set name, price_usd, description and file name, then place the actual file in products/.
+To remove one, delete its block.
+Restart the bot.
+
+IMPORTANT
+- The bot only sends a file after YOU verify the TXID.
+- The bot does not automatically trust a TXID.
+- Verify recipient address, network, token/coin, amount and confirmations on the appropriate blockchain explorer before clicking VERIFY.
+- SQLite makes /myorders persist across restarts, but make backups of store.db.
+- Telegram bots cannot initiate a private chat with a user who has never started/interacted with the bot. This design works because the buyer already used the bot.
+- Do not put private keys, seed phrases, or bot tokens into this project.
+
+DISCORD NOTIFY BOT RECHARGE
+Buyer:
+Manage Discord Notify Bot -> Recharge Bot ($10) -> enters bot username -> receives wallet details -> pays -> Payment Sent -> submits TXID.
+
+Admin:
+Receives a RECHARGE request with bot username, buyer Telegram ID and TXID -> verifies -> clicks VERIFY RECHARGE -> buyer gets confirmation.
+
+NOTE
+The recharge verification currently confirms the payment and records the request. It does not directly change a Discord bot's subscription because no Discord service/API was provided. That can be connected later.
