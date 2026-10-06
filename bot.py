@@ -16,7 +16,7 @@ ADMIN_ID = int(os.getenv("ADMIN_TELEGRAM_ID", "7582205873"))
 
 CRYPTO_COIN = os.getenv("CRYPTO_COIN", "USDT")
 CRYPTO_NETWORK = os.getenv("CRYPTO_NETWORK", "TRON (TRC20)")
-CRYPTO_ADDRESS = os.getenv("CRYPTO_ADDRESS", "oxbv")
+CRYPTO_ADDRESS = os.getenv("CRYPTO_ADDRESS", "TQKr4erMHBrf3FETzFPnAtPkvMKvLQDnXR")
 
 DB = Path("store.db")
 PRODUCT_DIR = Path("products")
